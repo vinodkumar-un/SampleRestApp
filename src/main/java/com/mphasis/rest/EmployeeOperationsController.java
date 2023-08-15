@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mphasis.model.Employee;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/employee/api")
+@Slf4j
 public class EmployeeOperationsController {
 
 	Employee employee = new Employee();
@@ -23,13 +26,14 @@ public class EmployeeOperationsController {
 	
 	@PostMapping("/emp")
 	public ResponseEntity<Employee> addEmployee(@RequestBody Employee emp) {
+		log.info("End point emp data comes with: "+emp);
 		list.add(emp);
 		return new ResponseEntity<Employee>(emp, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/emp")
 	public ResponseEntity<Employee> getEmployee() {
-		
+		log.info("get data from getEmployee method");
 		return new ResponseEntity<Employee>(list.get(0), HttpStatus.OK);
 	}
 	
