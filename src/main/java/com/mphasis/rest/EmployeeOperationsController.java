@@ -21,16 +21,22 @@ public class EmployeeOperationsController {
 	public List<Employee> list = new ArrayList<>();
 	
 	
-	@GetMapping("/empList")
-	public ResponseEntity<List<Employee>> getAllEmployees() {
-		
-		return new ResponseEntity<List<Employee>>(list, HttpStatus.OK);
-	}
-	
 	@PostMapping("/emp")
 	public ResponseEntity<Employee> addEmployee(@RequestBody Employee emp) {
 		list.add(emp);
 		return new ResponseEntity<Employee>(emp, HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/emp")
+	public ResponseEntity<Employee> getEmployee() {
+		
+		return new ResponseEntity<Employee>(list.get(0), HttpStatus.OK);
+	}
+	
+	@GetMapping("/empList")
+	public ResponseEntity<List<Employee>> getAllEmployees() {
+		
+		return new ResponseEntity<List<Employee>>(list, HttpStatus.OK);
 	}
 	
 }
